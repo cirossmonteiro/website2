@@ -1,0 +1,185 @@
+<script src="/assets/web/assets/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/shared/js/jquery.magnific-popup.js"></script>
+<script type="text/javascript" src="/shared/js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/shared/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/shared/js/localization/messages_pt_BR.min.js"></script>
+<script type="text/javascript" src="/shared/js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="/shared/js/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#sucesso").hide();
+        $("#erro").hide();
+        $("#enviando").hide();
+        $("#form").validate();
+        $("#form").on('submit', function (e) {
+            var isvalid = $("#form").valid();
+            if (isvalid) {
+                $("#enviar").attr("disabled", true);
+                $("#enviando").show();
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: '/Contato/Enviar',
+                    data: $(form).serialize(),
+                    success: function () {
+                        $("#enviar").attr("disabled", false);
+                        $("#sucesso").show();
+                        $("#enviando").hide();
+                    },
+                    error: function () {
+                        $("#enviar").attr("disabled", false);
+                        $("#erro").show();
+                        $("#enviando").hide();
+                    }
+                });
+            }
+        });
+    });
+</script>
+<script src="/assets/tether/tether.min.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/masonry/masonry.pkgd.min.js"></script>
+<script src="/assets/smooth-scroll/smooth-scroll.js"></script>
+<script src="/assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/assets/dropdown/js/script.min.js"></script>
+<script src="/assets/touch-swipe/jquery.touch-swipe.min.js"></script>
+<script src="/assets/jarallax/jarallax.js"></script>
+<script src="/assets/viewport-checker/jquery.viewportchecker.js"></script>
+<script src="/assets/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js"></script>
+<script src="/assets/theme/js/script.js"></script>
+<script src="/assets/mobirise-gallery/player.min.js"></script>
+<script src="/assets/mobirise-gallery/script.js"></script>
+<script src="/assets/formoid/formoid.min.js"></script>
+    
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.telefone').mask('(99)99999-9999');
+            $('.data').mask('99/99/9999');
+            $('.dinheiro').mask('000.000.000.000.000,00', { reverse: true });
+        });
+
+        jQuery(function ($) {
+            $.datepicker.regional['pt-BR'] = {
+                closeText: 'Fechar',
+                prevText: '&#x3c;Anterior',
+                nextText: 'Pr&oacute;ximo&#x3e;',
+                currentText: 'Hoje',
+                monthNames: [
+                    'Janeiro', 'Fevereiro', 'Mar&ccedil;o', 'Abril', 'Maio', 'Junho',
+                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                ],
+                monthNamesShort: [
+                    'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+                    'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+                ],
+                dayNames: ['Domingo', 'Segunda-feira', 'Ter&ccedil;a-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sabado'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+                dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+                weekHeader: 'Sm',
+                dateFormat: 'dd/mm/yy',
+                firstDay: 0,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+            };
+            $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+        });
+
+        $(function () {
+            $(".data").datepicker();
+            $(".data").datepicker("option", "dateFormat", 'dd/mm/yy');
+        });
+
+        var startWindowScroll = 0;
+        $('.open-popup').magnificPopup({
+            type: 'ajax',
+            callbacks: {
+                beforeOpen: function () {
+                    startWindowScroll = $(window).scrollTop();
+                    $('html').addClass('mfp-helper');
+                    this.wrap.removeAttr('tabindex');
+                },
+                close: function () {
+                    $('html').removeClass('mfp-helper');
+                    $(window).scrollTop(startWindowScroll);
+                }
+            }
+        });
+
+        $('.open-popup-reload').magnificPopup({
+            type: 'ajax',
+            callbacks: {
+                beforeOpen: function () {
+                    startWindowScroll = $(window).scrollTop();
+                    $('html').addClass('mfp-helper');
+                    this.wrap.removeAttr('tabindex');
+                },
+                close: function () {
+                    window.location.reload();
+                }
+            }
+        });
+
+        $("#form").validate();
+
+        $(function () {
+            $("#sortable, #sortable2").sortable({
+                update: function (event, ui) {
+                    var dominio = $("#Dominio").val();
+                    var id = $("#sortable #Id").val() > 0 ? $("#sortable #Id").val() : '';
+                    var url = dominio === 'Album' ? dominio + '/OrdenarImagens/' : dominio + '/Ordenar/';
+                    var data = $(this).sortable('serialize');
+                    $.ajax({
+                        data: data,
+                        type: 'POST',
+                        url: '/Admin/' + url + id
+                    });
+                },
+                //stop: function(event, ui) {
+                //    location.reload();
+                //}
+            });
+        });
+    
+
+
+        $(function () {
+            $(".show-admin").click(function () {
+                $(".menu-admin").fadeOut(100);
+                $(this).next(".menu-admin").fadeToggle(400);
+            });
+
+            $(".show-admin").mouseover(function () {
+                $(".menu-admin").fadeOut(100);
+                $(this).next(".menu-admin").fadeIn(400);
+            });
+
+            $(".menu-admin").click(function () {
+                $(this).hide();
+            });
+        });
+
+        $(document).mouseup(function(e) 
+        {
+            var container = $(".menu-admin");
+
+            if (!container.is(e.target) && container.has(e.target).length === 0) 
+            {
+                container.hide();
+            }
+        });
+
+        var clr;
+        $('.admin').on('mouseleave',
+            function() {
+                clr = setTimeout(function() {
+                    $('.menu-admin').fadeOut(400);
+                    },
+                    1000);
+            }).on('mouseenter',
+            function() {
+                clearTimeout(clr);
+            });
+</script>

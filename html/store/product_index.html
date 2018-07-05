@@ -1,0 +1,18 @@
+<div class = "prodout">
+	<div class = "prod" onmouseenter = "mousein(this);" onmouseleave = "mouseout(this);">
+		<div class = "prodin1">
+			Name: %s<br>
+			Price: %.2f<br>
+		</div>
+		<div class = "prodin2">
+			Description: %s<br>
+			Stock: %d
+		</div><br>
+
+		<img src = 'product_pics/prod%d' class = "pimg"  onerror="this.src='default_product.png'" width = 100 height = 100 onclick = "img_zoom(this);"><br>
+
+		Quantity: <input onkeydown = 'if (event.which == 13) update(this);' oninput = 'validation(this);' class = 'input_prod' type = 'text' id = 'q%d' size = 1 value = 0><br>
+
+		<button type = 'button' id = 'b%d' onmousedown = 'update(this);'> update </button>
+	</div>
+</div>

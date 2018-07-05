@@ -1,0 +1,23 @@
+<div id="div-login" class="modal">
+	
+	<form class="modal-content animate">
+		
+		<div class="container">
+			<label><b>E-mail</b><br>
+			<input type="text" placeholder="Enter E-mail" name="email" id = "email_login" onkeydown = "check_key_login(event)" required></label><br>
+
+			<label><b>Password</b><br>
+			<input type="password" placeholder="Enter Password" id = "password_login" name="passw" onkeydown = "check_key_login(event)" required></label><br>
+				
+			<button id = "submit_login" onclick = "login()" type = "button" >Login</button>
+			<span id = status_login></span>
+		</div>
+
+		<div class="container" style="background-color:#f1f1f1">
+			<button type="button" onclick="document.getElementById('div-login').style.display = 'none'" class="cancelbtn">Cancel</button>
+			<span class="psw">Forgot <a href="#">password?</a></span>
+		</div>
+
+	</form>
+
+</div>

@@ -1,0 +1,25 @@
+<div id = "new_product" class = "modal">
+
+	<form enctype='multipart/form-data' action = 'new_product2.php' method = 'post'>
+				Name: <input type = 'text' name = 'name' id = 'name'><br>
+				Stock: <input type = 'text' name = 'stock' id = 'stock'><br>
+				Price: <input type = 'text' name = 'price' id = 'price'><br>
+				Description: <input type = 'text' name = 'description' id = 'description'><br>
+				Picture: <input type = 'file' name = 'picture' id = 'picture'><br><img src = 'default_product.png' id = 'imgpic' height = 100 width = 100>
+				<input type = "submit" id = "send" name = "add" value = "Add">
+			</form><br><br>
+
+	Fast add (only URLs for pictures, one per line):
+	<form action = 'fast_pic.php' id = 'fastform' method = 'post'>
+		<input type = "submit" value = "Go fast!">
+	</form><br>
+	<textarea id = 'fasttext' name = 'fast_links' rows = 10 cols = 100 form = 'fastform'></textarea>
+	<br><br>
+
+	Ultra Fast (the URL to search for URL of pictures):
+	<form action = 'ultrafast_pic.php' id = 'ultrafastform' method = 'post'>
+		<input type = "text" name = "ultraurl">
+		<input type = "submit" value = "Go Ultra Fast!">
+	</form><br>
+
+</div>

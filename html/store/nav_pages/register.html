@@ -1,0 +1,36 @@
+<div id = "div-register1" class = "modal">
+
+	<form class = "modal-content animate" method = "post" action = "register2.php">
+
+		<div class = "container">
+			Name: <input type = "text" name = "name" id = "name" size = 50><br>
+
+			E-mail: <input type = "text" name = "email" id = "email">
+
+			CEP(xxxxx-xxx): <input type = "text" oninput = "fcep(this);" name = "cep" id = "cep"><br>
+
+			Logradouro: <input type = "text" name = "logradouro" id = "logradouro"> Número: <input type = "text" name = "numero" id = "numero" size = 1>
+			Complemento: <input type = "text" name = "complemento" id = "complemento"><br>
+
+			Bairro: <input type = "text" name = "bairro" id = "bairro">
+			Cidade: <input type = "text" name = "cidade" id = "cidade">
+			Estado: <input type = "text" name = "estado" id = "estado" size = 1><br>
+
+			Password: <input type = "password" name = "hashpw" id = "pass1">
+			Confirm: <input type = "password" name = "hashpw2" id = "pass2" onkeyup = "validation()" onblur = "validation()"><span id = "pass2p"></span><br>
+
+			User:
+			<input type = "radio" name = "utype" value = 0 checked> Regular user
+			<input type = "radio" name = "utype" value = 1>Admin<br>
+
+			<button type = "submit" id = "send">Register</button>
+		</div>
+
+		<div class = "container" style = "background-color: #f1f1f1">
+			<button type = "button" onclick = "document.getElementById('div-register1').style.display = 'none'" class="cancelbtn">Cancel</button>
+			<span class = "psw">Forgot <a href = "#">password?</a></span>
+		</div>
+
+	</form>
+
+</div>
